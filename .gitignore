@@ -1,0 +1,14 @@
+node_modules/
+.env
+.env.local
+.env.*.local
+.vercel
+dist/
+.next/
+*.log
+.DS_Store
+*.csv
+*.png
+
+# Allow architecture diagram
+!Arc-diagram.png
