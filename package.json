@@ -1,7 +1,7 @@
 {
   "name": "mira",
   "version": "1.0.0",
-  "description": "Mira - WhatsApp Data Analyst with E2B, Exa MCP, and Gemini",
+  "description": "Mira - AI-Powered CSV Data Analyst with E2B and Gemini",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -11,18 +11,12 @@
     "deploy": "vercel"
   },
   "dependencies": {
-    "@ai-sdk/groq": "latest",
     "@e2b/code-interpreter": "^2.2.0",
     "@google/generative-ai": "^0.21.0",
-    "@vercel/blob": "^0.23.0",
-    "ai": "^5.0.99",
-    "dotenv": "^17.2.3",
     "e2b": "^2.7.0",
     "next": "latest",
-    "puppeteer": "^21.0.0",
     "react": "latest",
-    "react-dom": "latest",
-    "zod": "latest"
+    "react-dom": "latest"
   },
   "devDependencies": {
     "@types/node": "latest",

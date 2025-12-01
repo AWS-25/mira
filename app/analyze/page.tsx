@@ -22,9 +22,10 @@ export default function AnalyzePage() {
   const [result, setResult] = useState<AnalysisResult | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const handleDrop = useCallback((e: React.DragEvent) => {
+  const handleDrop = useCallback((e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
-    const droppedFile = e.dataTransfer.files[0];
+    const files = e.dataTransfer.files;
+    const droppedFile = files.length > 0 ? files[0] : null;
     if (droppedFile?.name.endsWith('.csv')) {
       setFile(droppedFile);
       setError(null);
@@ -34,7 +35,8 @@ export default function AnalyzePage() {
   }, []);
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedFile = e.target.files?.[0];
+    const files = e.target.files;
+    const selectedFile = files && files.length > 0 ? files[0] : null;
     if (selectedFile?.name.endsWith('.csv')) {
       setFile(selectedFile);
       setError(null);
@@ -67,11 +69,12 @@ export default function AnalyzePage() {
       }
 
       setProgress('Processing results...');
-      const data = await response.json();
+      const data = await response.json() as AnalysisResult;
       setResult(data);
       setProgress('');
-    } catch (err: any) {
-      setError(err.message || 'Something went wrong');
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'Something went wrong';
+      setError(errorMessage);
       setProgress('');
     } finally {
       setLoading(false);
